@@ -14,6 +14,6 @@ class Solution {
         	t.append(i);
         }
         
-        return s.compareTo(t)==0;     
+        return s.toString().equals(t.toString());       
     }
 }
