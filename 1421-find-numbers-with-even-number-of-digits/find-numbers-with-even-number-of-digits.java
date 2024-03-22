@@ -2,11 +2,9 @@ class Solution {
     public int findNumbers(int[] a) {
         int c=0;
 
-        for(int i=0;i<a.length;i++)
+        for(int i:a)
         {
-            int digits = (int)Math.log10(a[i])+1;
-
-            if(digits%2==0) c++;
+            if(((int)Math.log10(i)+1)%2==0) c++;
         }
 
         return c;
