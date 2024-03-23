@@ -1,16 +1,16 @@
 class NumArray {
 
-    HashMap<Integer,Integer> h;
+    int p[];
 
     public NumArray(int[] nums) 
     {
-        h=new HashMap<>();
+        p=new int[nums.length];
         
         int sum=0;
         for(int i=0;i<nums.length;i++)
         {
             sum+=nums[i];
-            h.put(i,sum);
+            p[i]=sum;
         }
     }
     
@@ -18,10 +18,10 @@ class NumArray {
     {
         if(left==0)
         {
-            return h.get(right);
+            return p[right];
         }
 
-        return h.get(right)-h.get(left-1);
+        return p[right]-p[left-1];
     }
 }
 
