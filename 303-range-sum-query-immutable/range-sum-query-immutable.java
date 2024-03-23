@@ -1,22 +1,21 @@
 class NumArray {
 
-    int nums[];
+    HashMap<Integer,Integer> h;
 
-    public NumArray(int[] nums) {
-        this.nums= nums;
-    }
-    
-    public int sumRange(int left, int right) {
+    public NumArray(int[] nums) 
+    {
+        h=new HashMap<>();
+        
         int sum=0;
-
-        HashMap<Integer,Integer> h=new HashMap<>();
-
         for(int i=0;i<nums.length;i++)
         {
             sum+=nums[i];
             h.put(i,sum);
         }
-
+    }
+    
+    public int sumRange(int left, int right)
+    {
         if(left==0)
         {
             return h.get(right);
