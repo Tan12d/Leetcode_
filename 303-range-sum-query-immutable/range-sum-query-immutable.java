@@ -9,12 +9,20 @@ class NumArray {
     public int sumRange(int left, int right) {
         int sum=0;
 
-        for(int i=left; i<=right;i++)
+        HashMap<Integer,Integer> h=new HashMap<>();
+
+        for(int i=0;i<nums.length;i++)
         {
             sum+=nums[i];
+            h.put(i,sum);
         }
 
-        return sum;
+        if(left==0)
+        {
+            return h.get(right);
+        }
+
+        return h.get(right)-h.get(left-1);
     }
 }
 
