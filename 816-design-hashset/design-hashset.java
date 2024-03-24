@@ -1,6 +1,6 @@
 class MyHashSet {
 
-    boolean val[];
+    private boolean val[];
 
     public MyHashSet() {
         val = new boolean[1_000_001];
