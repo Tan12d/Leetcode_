@@ -1,21 +1,26 @@
 class MyHashSet {
 
-    private boolean val[];
+    ArrayList<Integer> a;
 
     public MyHashSet() {
-        val = new boolean[1_000_001];
+        a=new ArrayList<>();
     }
     
     public void add(int key) {
-        val[key]=true;
+        if(!a.contains(key))
+        {
+            a.add(key);
+        }
     }
     
     public void remove(int key) {
-        val[key]=false;
+        int t= a.indexOf(key);
+
+        if(t>=0) a.remove(t);
     }
     
     public boolean contains(int key) {
-        return val[key];
+        return a.contains(key);
     }
 }
 
