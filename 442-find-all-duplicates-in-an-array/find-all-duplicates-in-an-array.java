@@ -5,7 +5,14 @@ class Solution {
 
         if(nums.length==1) return ans;
 
-        int freq[] = new int[100_001];
+        int max=Integer.MIN_VALUE;
+
+        for(int i:nums)
+        {
+            max = Math.max(max,i);
+        }
+
+        int freq[] = new int[max+1];
 
         for(int i:nums)
         {
