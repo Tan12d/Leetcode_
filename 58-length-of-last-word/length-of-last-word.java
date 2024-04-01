@@ -3,15 +3,13 @@ class Solution {
     {
         s=s.trim();
 
-        int c=0;
+        int i=0;
 
-        for(int i=s.length()-1;i>=0;i--)
+        for(i=s.length()-1;i>=0;i--)
         {
             if(s.charAt(i)==' ') break;
-
-            c++;
         }
 
-        return c;
+        return (s.length()-1-i);
     }
 }
