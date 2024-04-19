@@ -7,7 +7,7 @@ class Solution {
 
         while(i<a.length && j<b.length)
         {
-            if((long)a[i]>(long)(2*(long)b[j]))
+            if((long)a[i]>((long)2*(long)b[j]))
             {
                 count+=(a.length-i);
                 j++;
