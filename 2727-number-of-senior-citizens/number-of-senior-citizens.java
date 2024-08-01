@@ -3,9 +3,9 @@ class Solution {
     {
         int res=0;
 
-        for(int i=0;i<details.length;i++)
+        for(String s: details)
         {
-            int age = Integer.parseInt(details[i].substring(11,13));
+            int age = Integer.parseInt(s.substring(11,13));
 
             if(age>60) res++;
         }
