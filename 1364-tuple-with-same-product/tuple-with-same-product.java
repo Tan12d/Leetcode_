@@ -24,7 +24,7 @@ class Solution {
 			
 			else if(entry.getValue()>2)
 			{
-				int combinations = (combination(entry.getValue(), 2))*8;
+				int combinations = (entry.getValue()*(entry.getValue()-1)/2)*8;
 				val+=combinations;
 			}
 		}      
@@ -32,8 +32,8 @@ class Solution {
 		return val;
     }	
 	
-	public static int combination(int n, int r) {
-        if (r == 0 || r == n) return 1; // Base case
-        return combination(n - 1, r - 1) + combination(n - 1, r);
-    }
+	// public static int combination(int n, int r) {
+    //     if (r == 0 || r == n) return 1; // Base case
+    //     return combination(n - 1, r - 1) + combination(n - 1, r);
+    // }
 }
