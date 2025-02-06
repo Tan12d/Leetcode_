@@ -17,12 +17,7 @@ class Solution {
 		
 		for(Map.Entry<Integer,Integer> entry: freq.entrySet())
 		{
-			if(entry.getValue()==2)
-			{
-				val+=8;
-			}
-			
-			else if(entry.getValue()>2)
+			if(entry.getValue()>=2)
 			{
 				int combinations = (entry.getValue()*(entry.getValue()-1)/2)*8;
 				val+=combinations;
