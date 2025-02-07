@@ -3,31 +3,30 @@ class Solution {
     {
         List<Integer> l=new ArrayList<Integer>();
 		
-		HashMap<Integer, Integer> h = new HashMap<Integer, Integer>();
-		HashMap<Integer, Integer> h1 = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> ballColor = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> colorFreq = new HashMap<Integer, Integer>();
 		
-		for(int i=0;i<queries.length;i++)
+		for(int i=0;i<queries.length;++i)
 		{
-			// color already present
-			if(h.containsKey(queries[i][0]))
+			int ball = queries[i][0];
+			int color = queries[i][1];	
+			
+			if(ballColor.containsKey(ball))
 			{
-				int color = h.get(queries[i][0]);
-				h1.put(color, h1.get(color)-1);
+				int prevColor = ballColor.get(ball);
 				
-				if(h1.get(color)==0) h1.remove(color);
+				colorFreq.put(prevColor, colorFreq.get(prevColor)-1);
+				
+				if(colorFreq.get(prevColor)==0) colorFreq.remove(prevColor);
 			}
 			
-			// first time ball
-			h.put(queries[i][0], queries[i][1]);
+			ballColor.put(ball, color);
 			
-			// first color
-			h1.put(queries[i][1], h1.getOrDefault(queries[i][1], 0)+1);
+			colorFreq.put(color, colorFreq.getOrDefault(color, 0)+1);
 			
-			l.add(h1.size());
+			l.add(colorFreq.size());			
 		}
 		
-		int color[] = l.stream().mapToInt(i -> i).toArray();
-		
-		return color;
+		return l.stream().mapToInt(i -> i).toArray();
     }
 }
