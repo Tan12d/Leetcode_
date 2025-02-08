@@ -1,7 +1,7 @@
 class NumberContainers {
 
     HashMap<Integer, Integer> idx_num;
-    HashMap<Integer, TreeSet<Integer>> num_indices;
+    HashMap<Integer, PriorityQueue<Integer>> num_indices;
 
     public NumberContainers() 
     {
@@ -11,7 +11,6 @@ class NumberContainers {
     
     public void change(int index, int number) 
     {
-        // If the number exists
         if(idx_num.containsKey(index))
         {
             int old_value = idx_num.get(index);
@@ -21,22 +20,14 @@ class NumberContainers {
             num_indices.get(old_value).remove(index);
         }
 
-        // Insert a new Number
         idx_num.put(index, number);
-        num_indices.computeIfAbsent(number, k -> new TreeSet<>()).add(index);        
+        num_indices.computeIfAbsent(number, k -> new PriorityQueue<>()).add(index);        
     }
     
     public int find(int number) 
     {
-        TreeSet<Integer> res = num_indices.getOrDefault(number, new TreeSet<>());
+        PriorityQueue<Integer> res = num_indices.getOrDefault(number, new PriorityQueue<>());
 
-        return res.isEmpty() ? -1 : res.first();  
+        return res.isEmpty() ? -1 : res.peek();  
     }
 }
-
-/**
- * Your NumberContainers object will be instantiated and called as such:
- * NumberContainers obj = new NumberContainers();
- * obj.change(index,number);
- * int param_2 = obj.find(number);
- */
