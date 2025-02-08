@@ -1,7 +1,7 @@
 class NumberContainers {
 
     HashMap<Integer, Integer> idx_num;
-    HashMap<Integer, PriorityQueue<Integer>> num_indices;
+    HashMap<Integer, TreeSet<Integer>> num_indices;
 
     public NumberContainers() 
     {
@@ -23,14 +23,14 @@ class NumberContainers {
 
         // Insert a new Number
         idx_num.put(index, number);
-        num_indices.computeIfAbsent(number, k -> new PriorityQueue<>()).add(index);        
+        num_indices.computeIfAbsent(number, k -> new TreeSet<>()).add(index);        
     }
     
     public int find(int number) 
     {
-        PriorityQueue<Integer> res = num_indices.getOrDefault(number, new PriorityQueue<>());
+        TreeSet<Integer> res = num_indices.getOrDefault(number, new TreeSet<>());
 
-        return res.isEmpty() ? -1 : res.peek();  
+        return res.isEmpty() ? -1 : res.first();  
     }
 }
 
