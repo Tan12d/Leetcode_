@@ -14,9 +14,15 @@ class NumberContainers {
         if(idx_num.containsKey(index))
         {
             int old_value = idx_num.get(index);
-            if(old_value == number) return;
+
+            if(old_value==number) return;
 
             num_indices.get(old_value).remove(index);
+
+            if(num_indices.get(old_value).isEmpty())
+            {
+                num_indices.remove(old_value);
+            }
         }
 
         idx_num.put(index, number);
