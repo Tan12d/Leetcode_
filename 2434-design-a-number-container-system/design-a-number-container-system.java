@@ -30,7 +30,9 @@ class NumberContainers {
     
     public int find(int number) 
     {
-        return (!num_indices.containsKey(number)) ? -1 : num_indices.get(number).first();        
+        if(!num_indices.containsKey(number)) return -1;
+
+        return num_indices.get(number).first();        
     }
 }
 
