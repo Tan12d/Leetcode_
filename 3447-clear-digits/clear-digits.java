@@ -7,10 +7,7 @@ class Solution {
         {
         	if(res.charAt(i)>='0' && res.charAt(i)<='9') 
         	{
-        		if(i!=0)
-        		{
-        			res.delete(i-1, i+1);
-        		}
+        		res.delete(i-1, i+1);
         		
         		i=0;
         	}
