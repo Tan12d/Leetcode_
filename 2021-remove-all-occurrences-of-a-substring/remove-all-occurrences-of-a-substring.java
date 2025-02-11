@@ -1,7 +1,5 @@
 class Solution {
 
-    StringBuilder new_string;
-
     public String removeOccurrences(String s, String part) 
     {
         if(s.indexOf(part)==-1)
@@ -11,7 +9,7 @@ class Solution {
 		
 		else
 		{
-			new_string = new StringBuilder(s);
+			StringBuilder new_string = new StringBuilder(s);
 			
 			int idx = new_string.indexOf(part);
 			
