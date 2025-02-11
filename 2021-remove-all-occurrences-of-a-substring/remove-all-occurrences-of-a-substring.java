@@ -1,19 +1,13 @@
 class Solution {
 
-    StringBuilder new_string;
-
     public String removeOccurrences(String s, String part) 
     {
-        if(s.indexOf(part)==-1)
+        while(s.contains(part))
 		{
-			return s;
+			int idx = s.indexOf(part);
+			s = s.substring(0, idx)+s.substring(idx+part.length());
 		}
 		
-		else
-		{
-			new_string = new StringBuilder(s);
-			
-			return removeOccurrences(new_string.delete(new_string.indexOf(part), new_string.indexOf(part)+part.length()).toString(), part);
-		}
+		return s;
     }
 }
