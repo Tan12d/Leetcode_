@@ -1,5 +1,7 @@
 class Solution {
 
+    StringBuilder new_string;
+
     public String removeOccurrences(String s, String part) 
     {
         if(s.indexOf(part)==-1)
@@ -9,11 +11,9 @@ class Solution {
 		
 		else
 		{
-			StringBuilder new_string = new StringBuilder(s);
+			new_string = new StringBuilder(s);
 			
-			int idx = new_string.indexOf(part);
-			
-			return removeOccurrences(new_string.delete(idx, idx+part.length()).toString(), part);
+			return removeOccurrences(new_string.delete(new_string.indexOf(part), new_string.indexOf(part)+part.length()).toString(), part);
 		}
     }
 }
