@@ -3,28 +3,16 @@ class Solution {
     {
         HashMap<Integer, List<Integer>> h=new HashMap<Integer, List<Integer>>(); 
 		
-		int val=0;
-		
-        for(int i=0;i<nums.length;i++)
+		for(int i=0;i<nums.length;i++)
         {
-        	int n=nums[i];
+        	int total_sum = getDigitSum(nums[i]);
         	
-        	while(n!=0)
-        	{
-        		val+=n%10;
-        		
-        		n/=10;
-        	}
-        	
-        	h.putIfAbsent(val, new ArrayList<Integer>());
-        	h.get(val).add(nums[i]);
-        	val=0;
+        	h.putIfAbsent(total_sum, new ArrayList<Integer>());
+        	h.get(total_sum).add(nums[i]);  
         }
         
-        System.out.println(h);
-        
         int max_Sum = 0;
-        val=0;
+        int val=0;
         
         for(List<Integer> value: h.values())
         {
@@ -48,4 +36,17 @@ class Solution {
         
         return max_Sum;
     }
+	
+	public static int getDigitSum(int n)
+	{
+		int val=0;
+		
+		while(n!=0)
+    	{
+    		val+=n%10;    		
+    		n/=10;
+    	}
+		
+		return val;
+	}
 }
