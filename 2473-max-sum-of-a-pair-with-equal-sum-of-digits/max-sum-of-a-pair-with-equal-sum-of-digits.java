@@ -1,43 +1,31 @@
 class Solution {
-    public int maximumSum(int[] nums) 
-    {
-        HashMap<Integer, List<Integer>> h=new HashMap<Integer, List<Integer>>(); 
+	
+	public int maximumSum(int nums[])
+	{
+		HashMap<Integer, Integer> sum_num=new HashMap<Integer, Integer>();
+		
+		int max_Sum=-1;
 		
 		for(int i=0;i<nums.length;i++)
         {
         	int total_sum = getDigitSum(nums[i]);
         	
-        	h.putIfAbsent(total_sum, new ArrayList<Integer>());
-        	h.get(total_sum).add(nums[i]);  
-        }
-        
-        int max_Sum = 0;
-        int val=0;
-        
-        for(List<Integer> value: h.values())
-        {
-        	if(value.size()==2)
+        	if(!sum_num.containsKey(total_sum))
         	{
-        		val+=(value.get(0)+value.get(1));
+        		sum_num.put(total_sum, nums[i]);
         	}
         	
-        	else if(value.size()>2)
+        	else
         	{
-        		Collections.sort(value, Collections.reverseOrder());
-        		
-        		val+=(value.get(0)+value.get(1));   		
+        		max_Sum = Math.max(max_Sum, sum_num.get(total_sum)+nums[i]);
+        		sum_num.put(total_sum, Math.max(sum_num.get(total_sum), nums[i]));
         	}
-        	
-        	max_Sum = Math.max(max_Sum, val);
-        	val=0;
         }
-        
-        if(max_Sum==0) return -1;
-        
-        return max_Sum;
-    }
-	
-	public static int getDigitSum(int n)
+		
+		return max_Sum;		
+	}
+
+    public int getDigitSum(int n)
 	{
 		int val=0;
 		
