@@ -15,7 +15,7 @@ class Solution {
 		    Long first_smallest = p.poll();
 		    Long second_smallest = p.poll();
 
-		    val = Math.min(first_smallest, second_smallest) * 2 + Math.max(first_smallest, second_smallest);
+		    val = first_smallest * 2 + second_smallest;
 		    
 		    p.add(val);
 		    c++;
