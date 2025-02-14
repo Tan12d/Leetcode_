@@ -5,23 +5,28 @@ class ProductOfNumbers {
     public ProductOfNumbers() 
     {
         l=new ArrayList<Integer>();
+        l.add(1);
     }
     
     public void add(int num) 
     {
-        l.add(num);
+    	if(num==0) {
+    		l.clear();
+    		l.add(1);
+    		return;
+    	}
+    	
+    	int val=l.get(l.size()-1);
+        l.add(val*num);
     }
     
     public int getProduct(int k) 
     {
-    	int n=l.size(), product=1;
-    	
-        for(int i=n-1;i>=(n-k);i--)
-        {
-        	product*=l.get(i);
-        }
+    	int n=l.size();
         
-        return product;
+        if(n<=k) return 0; 
+        
+        return l.get(n-1)/l.get(n-k-1);
     }
 }
 
