@@ -24,7 +24,7 @@ class Solution {
         {
             sum=sum*10+(squareStr.charAt(i)-'0');
 
-            if(sum>target) return false;
+            if(sum>target) break;
 
             if(partition(squareStr, target-sum, i+1)) return true;
         }
