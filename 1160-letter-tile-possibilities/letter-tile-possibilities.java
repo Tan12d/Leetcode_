@@ -4,9 +4,8 @@ class Solution {
     {
         HashSet<String> res=new HashSet<String>();
         boolean visited[] =new boolean[tiles.length()];
-        String s="";
 
-        possibleWays(tiles, visited, s, res);
+        possibleWays(tiles, visited, "", res);
 
         return res.size();        
     }
