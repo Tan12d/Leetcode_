@@ -3,7 +3,7 @@ class Solution {
     {
         int n=pattern.length();
 		Stack<Integer> st = new Stack<Integer>();
-		String s="";
+		StringBuilder s=new StringBuilder("");
 		
 		for(int i=1;i<=n+1;i++)
 		{
@@ -13,13 +13,11 @@ class Solution {
 			{
 				while(!st.isEmpty())
 				{
-					s+=st.pop();
+					s.append(st.pop());
 				}
 			}
 		}
         
-        return s;
-
-        
+        return s.toString();
     }
 }
