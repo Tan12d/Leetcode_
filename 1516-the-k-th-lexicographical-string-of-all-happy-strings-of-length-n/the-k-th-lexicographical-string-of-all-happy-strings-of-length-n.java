@@ -1,6 +1,17 @@
 class Solution {
     public String getHappyString(int n, int k) 
     {
+        if(n==1 && k>3)
+        {
+            return "";
+        }
+
+        else if(n==1 && k==1) return "a";
+
+        else if(n==1 && k==2) return "b";
+
+        else if(n==1 && k==3) return "c";
+
         List<String> sorted_strings=new ArrayList<String>();
 		Queue<String> generated_strings=new LinkedList<String>();
         
@@ -37,8 +48,6 @@ class Solution {
         		generated_strings.offer(curr+"a");
         		generated_strings.offer(curr+"b");
         	}
-
-            if(sorted_strings.size()==k) break;
         }
         
         if(sorted_strings.size()<k) return "";
