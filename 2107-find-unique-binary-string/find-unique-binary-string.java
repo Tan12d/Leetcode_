@@ -15,11 +15,10 @@ class Solution {
         {
         	if(!h.contains(i))
         	{
-        		s = Integer.toBinaryString(i);
-        		break;
+                return  String.valueOf('0').repeat(n - Integer.toBinaryString(i).length()) + Integer.toBinaryString(i); 
         	}
         }
         
-        return  String.valueOf('0').repeat(n - s.length()) + s;       
+        return  "";       
     }
 }
