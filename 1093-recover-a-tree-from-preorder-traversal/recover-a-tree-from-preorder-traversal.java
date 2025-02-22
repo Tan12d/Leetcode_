@@ -14,7 +14,7 @@
  * }
  */
 class Solution {
-    public static TreeNode recoverFromPreorder(String traversal) 
+    public TreeNode recoverFromPreorder(String traversal) 
     {
 		int pos[]= new int[1];
 		int n=traversal.length();
@@ -31,7 +31,7 @@ class Solution {
         return root;
     }
 	
-	public static int getVal(String traversal, int n, int pos[])
+	public int getVal(String traversal, int n, int pos[])
 	{
 		int val=0;
 		
@@ -44,7 +44,7 @@ class Solution {
 		return val;
 	}
 	
-	public static int getDashLength(String traversal, int n, int pos[])
+	public int getDashLength(String traversal, int n, int pos[])
 	{
 		int originalPos = pos[0];
 		
@@ -56,7 +56,7 @@ class Solution {
 		return pos[0] - originalPos;
 	}
 	
-	public static void buildTree(TreeNode curr, int expectedDashlength, String traversal, int n, int pos[])
+	public void buildTree(TreeNode curr, int expectedDashlength, String traversal, int n, int pos[])
 	{
 		if(pos[0] == n) return;
 		
