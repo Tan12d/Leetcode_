@@ -1,18 +1,32 @@
 class Solution 
 {
-    public int maxAbsoluteSum(int[] nums) 
+    private int maxSumSubarrayKadanes(int[] nums) 
     {
-        int minPoint = 0;
-        int maxPoint = 0;
-        int prefixSum = 0;
+        int maxSum = Integer.MIN_VALUE;
+        int currSum = 0;
 
-        for (int num : nums) 
-        {
-            prefixSum += num;
-            minPoint = Math.min(minPoint, prefixSum);
-            maxPoint = Math.max(maxPoint, prefixSum);
+        for (int num : nums) {
+            currSum += num;
+            maxSum = Math.max(maxSum, currSum);
+            if (currSum < 0) {
+                currSum = 0;
+            }
         }
 
-        return maxPoint - minPoint;
+        return maxSum;
+    }
+
+    public int maxAbsoluteSum(int[] nums) 
+    {
+        int maxSumSubarray = maxSumSubarrayKadanes(nums);
+
+        for (int i = 0; i < nums.length; i++) 
+        {
+            nums[i] = -nums[i];
+        }
+
+        int minSumSubarray = maxSumSubarrayKadanes(nums);
+        
+        return Math.max(maxSumSubarray, minSumSubarray);
     }
 }
