@@ -1,40 +1,59 @@
 class Solution {
     public int[][] mergeArrays(int[][] nums1, int[][] nums2) 
     {
-        HashMap<Integer, ArrayList<Integer>> h = new HashMap<>();
+        int first=0, second=0, j=0;
+		int n1=nums1.length, n2=nums2.length;
 		
-		for(int i=0;i<nums1.length;i++)
+		int res[][] = new int[n1+n2][2]; 
+		
+		while(first<n1 && second<n2)
 		{
-			int key=nums1[i][0];
-			int value=nums1[i][1];
+			if(nums1[first][0]==nums2[second][0])
+			{
+				res[j][0]=nums1[first][0];
+				res[j][1]=nums1[first][1]+nums2[second][1];
+				
+				first++;
+				second++;
+			}
 			
-			h.putIfAbsent(key, new ArrayList<Integer>());
-			h.get(key).add(value);
-		}
-		
-		for(int i=0;i<nums2.length;i++)
-		{
-			int key=nums2[i][0];
-			int value=nums2[i][1];
+			else if(nums1[first][0]<nums2[second][0])
+			{
+				res[j][0] = nums1[first][0];
+				res[j][1] = nums1[first][1];
+				
+				first++;
+			}
 			
-			h.putIfAbsent(key, new ArrayList<Integer>());
-			h.get(key).add(value);
-		}
-		
-		int res[][] = new int[h.size()][2];
-		
-		int j=0;
-		
-		for(Map.Entry<Integer, ArrayList<Integer>> entry: h.entrySet())
-		{
-			res[j][0]=entry.getKey();
-			res[j][1]=entry.getValue().stream().mapToInt(Integer::intValue).sum();
+			else
+			{
+				res[j][0] = nums2[second][0];
+				res[j][1] = nums2[second][1];
+				
+				second++;
+			}
 			
 			j++;
 		}
-        
-        Arrays.sort(res, (a,b) -> Integer.compare(a[0], b[0]));
-
-		return res;        
+		
+		while(first<n1)
+		{
+			res[j][0]=nums1[first][0];
+			res[j][1]=nums1[first][1];
+			
+			first++;
+			j++;
+		}
+		
+		while(second<n2)
+		{
+			res[j][0]=nums2[second][0];
+			res[j][1]=nums2[second][1];
+			
+			second++;
+			j++;
+		}
+		
+		return Arrays.copyOf(res, j);
     }
 }
