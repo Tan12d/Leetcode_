@@ -1,6 +1,8 @@
 class Solution {
     public int[] closestPrimes(int left, int right) 
     {
+        int res[] = {-1, -1};
+        
         boolean isPrime[] = new boolean[right+1];
         Arrays.fill(isPrime, true);
         isPrime[0] = isPrime[1] = false;
@@ -29,13 +31,8 @@ class Solution {
         
         int first=0, second=0;
         
-        if(prime.size()<2)
-        {
-        	return new int[] {-1,-1};
-        }
-              	
-        else
-        {
+        if(prime.size()>1)
+        {        	
         	for(int i=1;i<prime.size();i++)
             {
         		int diff = prime.get(i)-prime.get(i-1);
@@ -47,8 +44,11 @@ class Solution {
             		second=prime.get(i);
             	}           	 	
             }
+        	
+        	res[0]=first;
+            res[1]=second;
         }
                 
-        return new int[] {first, second};        
+        return res;    
     }
 }
