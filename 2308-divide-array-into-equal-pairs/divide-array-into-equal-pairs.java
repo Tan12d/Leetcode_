@@ -5,12 +5,12 @@ class Solution {
 
 		for(int i=0;i<nums.length;i++)
 		{
-			freq[nums[i]]^=1;
+			freq[nums[i]]++;
 		}
 		
 		for(int i=0;i<freq.length;i++)
 		{
-			if((freq[i]&1)==1) return false;
+			if(freq[i]%2!=0) return false;
 		}
 		
 		return true; 
