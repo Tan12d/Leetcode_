@@ -14,7 +14,9 @@ class Solution {
         	
         	while((bitsUnion & temp)!=0)
         	{
-        		bitsUnion&=~nums[left++];
+        		bitsUnion &= ~nums[left];
+
+                left++;
         	}
         	
         	bitsUnion |= temp;
