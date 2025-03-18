@@ -7,16 +7,23 @@ class Solution {
 		int left=0, right=0;
 		int n = nums.length;
 		int maxLen = 0;
+				
+		int temp_right=0;
+		int temp_left=0;
 		
 		while(right<n)
 		{ 
-			curr_sum += nums[right];			
-			xor_sum ^= nums[right];
+			temp_right = nums[right];
+
+			curr_sum += temp_right;			
+			xor_sum ^= temp_right;
 			
 			while(curr_sum!=xor_sum)
 			{
-				curr_sum -= nums[left];
-				xor_sum ^= nums[left];
+				temp_left = nums[left];
+                
+				curr_sum -= temp_left;
+				xor_sum ^= temp_left;
 				
 				left++;
 			}
