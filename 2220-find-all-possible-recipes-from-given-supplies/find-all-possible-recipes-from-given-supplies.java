@@ -1,40 +1,54 @@
 class Solution {
     public List<String> findAllRecipes(String[] recipes, List<List<String>> ingredients, String[] supplies) 
     {
-        List<String> res = new ArrayList<String>();
-		Set<String> stock = new HashSet<>(Arrays.asList(supplies));
-		boolean flag=true;
+        Map<String, Integer> inDegree = new HashMap<String, Integer>();
+		Map<String, List<String>> adjList = new HashMap<String, List<String>>();
 		
-		do {
-			flag=false;
-			
-			for(int i=0;i<recipes.length;i++)
+		Set<String> stock = new HashSet<String>(Arrays.asList(supplies));
+		
+		for(int i=0;i<recipes.length;i++)
+		{
+			inDegree.put(recipes[i], 0);
+			for(String ingredient: ingredients.get(i))
 			{
-				if(!stock.contains(recipes[i]))
+				if(!stock.contains(ingredient))
 				{
-					List<String> ing = ingredients.get(i);
-				
-					int x=0;
-					for(int j=0;j<ing.size();j++)
+					adjList.computeIfAbsent(ingredient, k -> new ArrayList<String>()).add(recipes[i]);
+					inDegree.put(recipes[i], inDegree.getOrDefault(recipes[i], 0)+1);
+				}
+			}
+		}
+
+		Queue<String> q = new LinkedList<String>();
+		
+		for(Map.Entry<String, Integer> entry: inDegree.entrySet())
+		{
+			if(entry.getValue()==0)
+			{
+				q.offer(entry.getKey());
+			}
+		}
+
+		List<String> res = new ArrayList<String>();
+			
+		while(!q.isEmpty())
+		{
+			String currRecipe = q.poll();
+			res.add(currRecipe);
+			
+			if(adjList.containsKey(currRecipe))
+			{
+				for(String reqRecipe: adjList.get(currRecipe))
+				{
+					inDegree.put(reqRecipe, inDegree.get(reqRecipe)-1);
+					if(inDegree.get(reqRecipe)==0) 
 					{
-						if(!stock.contains(ing.get(j)))
-						{
-							x=1;
-							break;
-						}
-					}			
-					
-					if(x==0) 
-					{
-                        flag=true;
-                        
-						res.add(recipes[i]);
-						stock.add(recipes[i]);
+						q.offer(reqRecipe);
 					}
 				}
 			}
-		}while(flag);
+		}
 		
-		return res;
+        return res;		
     }
 }
