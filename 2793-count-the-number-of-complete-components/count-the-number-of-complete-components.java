@@ -25,7 +25,7 @@ class Solution {
 				int nodeCount[]=new int[1];
 				int edgeCount[]=new int[1];
 				
-				dfs(i, adjList, nodeCount, edgeCount, visited);
+				bfs(i, adjList, nodeCount, edgeCount, visited);
 				
 				if(edgeCount[0] == nodeCount[0]*(nodeCount[0]-1))
 				{
@@ -37,17 +37,28 @@ class Solution {
 		return countCompleteComponents;
     }
 	
-	public void dfs(int i, List<List<Integer>> adjList, int nodes[], int edges[], boolean[] visited)
+	public static void bfs(int i, List<List<Integer>> adjList, int nodes[], int edges[], boolean[] visited)
 	{
+		Queue<Integer> q=new LinkedList<Integer>();
+		
+		q.add(i);
 		nodes[0]++;
 		visited[i]=true;
 		
-		for(int neighbour: adjList.get(i))
+		while(!q.isEmpty())
 		{
-			edges[0]++;
-			if(!visited[neighbour])
+			int curr = q.poll();
+			
+			for(int neighbour: adjList.get(curr))
 			{
-				dfs(neighbour, adjList, nodes, edges, visited);
+				edges[0]++;
+				
+				if(!visited[neighbour])
+				{
+					nodes[0]++;
+					visited[neighbour]=true;
+					q.add(neighbour);
+				}
 			}
 		}
 	}
