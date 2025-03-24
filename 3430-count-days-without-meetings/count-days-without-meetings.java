@@ -9,7 +9,7 @@ class Solution {
         {
         	if(meetings[i-1][1]>=meetings[i][0])
         	{
-        		meetings[i][0] = meetings[i-1][0]; 
+        		meetings[i][0] = Math.min(meetings[i-1][0], meetings[i][0]);
         		meetings[i][1] = Math.max(meetings[i-1][1], meetings[i][1]);
         	}
         	
