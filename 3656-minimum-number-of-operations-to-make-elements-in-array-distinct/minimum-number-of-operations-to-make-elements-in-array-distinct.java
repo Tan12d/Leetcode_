@@ -3,14 +3,21 @@ class Solution {
     {
         int freq[] = new int[101];
 		
+		int lastIdx = 0;
+		
 		for(int i=nums.length-1;i>=0;i--)
 		{
-			if(++freq[nums[i]]>1)
+			freq[nums[i]]++;
+
+			if(freq[nums[i]]>1)
 			{
-				return (i+3)/3;
-			}
+				lastIdx = i+1;
+				break;
+			}			
 		}
         
-        return 0;  
+		if(lastIdx%3==0) return lastIdx/3;
+		
+        return lastIdx/3 + 1;
     }
 }
