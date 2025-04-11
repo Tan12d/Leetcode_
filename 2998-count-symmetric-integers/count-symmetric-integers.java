@@ -10,12 +10,17 @@ class Solution {
         	
         	if(len%2==0)
         	{
+        		int half = len/2;
         		int leftsum = 0, rightsum = 0;
         		
-        		for(int j=0;j<len/2;j++)
+        		for(int j=0;j<half;j++)
         		{
         			leftsum += num.charAt(j)-'0';
-        			rightsum += num.charAt(len-j-1)-'0';
+        		}
+        		
+        		for(int k=half;k<len;k++)
+        		{
+        			rightsum += num.charAt(k)-'0';
         		}
         		
         		if(leftsum==rightsum) count++;
