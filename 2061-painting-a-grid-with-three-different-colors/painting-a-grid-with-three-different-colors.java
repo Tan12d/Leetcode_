@@ -53,6 +53,7 @@ class Solution {
 
     public int colorTheGrid(int m, int n) 
     {
+        columnStates.clear();
         generateColumnStates("", m, ' ');
 
         int numColumnPatterns = columnStates.size();
