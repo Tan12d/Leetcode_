@@ -19,7 +19,7 @@ class Solution {
         }
     }
 
-    private int solve(int remainingCols, int prevColumnIdx, int m) 
+    private int solve(int prevColumnIdx, int remainingCols, int m) 
     {
         if (remainingCols == 0) return 1;
 
@@ -44,7 +44,7 @@ class Solution {
 
             if (valid) 
             {
-                totalWays = (totalWays + solve(remainingCols - 1, nextColumnIdx, m)) % MOD;
+                totalWays = (totalWays + solve(nextColumnIdx, remainingCols - 1, m)) % MOD;
             }
         }
 
@@ -53,7 +53,6 @@ class Solution {
 
     public int colorTheGrid(int m, int n) 
     {
-        columnStates.clear();
         generateColumnStates("", m, '#');
 
         int numColumnPatterns = columnStates.size();
@@ -69,7 +68,7 @@ class Solution {
 
         for (int i = 0; i < numColumnPatterns; i++) 
         {
-            result = (result + solve(n - 1, i, m)) % MOD;
+            result = (result + solve(i, n-1, m)) % MOD;
         }
 
         return result;
